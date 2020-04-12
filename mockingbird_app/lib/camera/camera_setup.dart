@@ -105,16 +105,15 @@ class CameraSetupState extends State<CameraSetup>
   }
 
   Widget _buildCameraPreview() {
-    print(_controller.value.previewSize.height);
-    print(_controller.value.previewSize.width);
+    num newAspectRatio = 4/3;
 
     return Container(
         child: Center(
           child: AspectRatio(
-              aspectRatio: 1,
+              aspectRatio: 4/3,
               child: ClipRect(
                   child: Transform.scale(
-                    scale: 1/_controller.value.aspectRatio,
+                    scale:  newAspectRatio /_controller.value.aspectRatio ,
                     child: Center(
                         child: AspectRatio(
                           aspectRatio: _controller.value.aspectRatio,
@@ -152,6 +151,7 @@ class CameraSetupState extends State<CameraSetup>
                   } else {
                     if (_isRecording) {
                       stopVideoRecording();
+                      providerState.updateFilePath();
                     } else {
                       startVideoRecording(providerState.filePath);
                     }
@@ -229,6 +229,7 @@ class CameraSetupState extends State<CameraSetup>
     setState(() {
       _isRecording = true;
     });
+    _deleteFile(filePath);
     _timerKey.currentState.startTimer();
 
 //    final Directory extDir = await getApplicationDocumentsDirectory();
@@ -247,6 +248,9 @@ class CameraSetupState extends State<CameraSetup>
       await _controller.startVideoRecording(filePath);
     } on CameraException catch (e) {
       _showCameraException(e);
+      if (e.code == "fileExists") {
+        print("made it here!!!!!!!!!!");
+      }
       return null;
     }
     return filePath;
@@ -288,4 +292,15 @@ class CameraSetupState extends State<CameraSetup>
 
   @override
   bool get wantKeepAlive => true;
+}
+
+_deleteFile(currentFilePath) {
+  try {
+    final dir = Directory(currentFilePath);
+    dir.deleteSync(recursive: true);
+    print('deleted a file');
+  }catch(e){
+    print("no file here to delete");
+  }
+
 }

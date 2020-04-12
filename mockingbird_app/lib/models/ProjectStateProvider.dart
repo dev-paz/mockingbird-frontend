@@ -1,17 +1,25 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
+import 'package:flutter/material.dart';
 
-class ProjectStateProvider {
+
+class ProjectStateProvider  with ChangeNotifier {
   String currentProjectID;
   String filePath;
   String username = 'cloud-admin';
   String password = 'UZTWLVEr6n';
+  num counter = 0;
 
 
   ProjectStateProvider({ this.currentProjectID });
+
+  void updateFilePath() {
+    print("update file path");
+    counter = counter + 1;
+    notifyListeners();
+  }
 
   Future<void> uploadFileToProject() async {
     FormData formData = new FormData.fromMap({
@@ -37,7 +45,7 @@ class ProjectStateProvider {
     }
   }
 
-  setProjectFilePath() async {
+  Future<void> setProjectFilePath() async {
     final Directory extDir = await getApplicationDocumentsDirectory();
     final String dirPath = '${extDir.path}/media';
     await Directory(dirPath).create(recursive: true);

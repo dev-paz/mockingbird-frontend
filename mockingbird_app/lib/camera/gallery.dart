@@ -72,7 +72,7 @@ class _GalleryState extends State<Gallery> {
                   IconButton(
                     icon: Icon(Icons.delete),
                     onPressed: (){
-                      _deleteFile;
+                      _deleteFile();
                     },
                   ),
                 ],

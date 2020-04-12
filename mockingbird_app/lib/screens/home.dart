@@ -48,9 +48,13 @@ class _HomeState extends State<Home> {
           ),
           body: Column(
             children: projects.map((p) => ProjectCard(
-              onCardPressed: (){
+              onCardPressed: () async {
                 projectStateProvider.currentProjectID = p.id;
-                projectStateProvider.setProjectFilePath();
+                await projectStateProvider.setProjectFilePath();
+                print("testing thingy");
+                print(projectStateProvider.filePath);
+                print(projectStateProvider.currentProjectID);
+
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) =>
