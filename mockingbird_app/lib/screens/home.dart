@@ -27,6 +27,7 @@ class _HomeState extends State<Home> {
      setState(() {
       loading = false;
       projects = instance.projects;
+      print(projects[0]);
     });
    }
 
@@ -62,7 +63,7 @@ class _HomeState extends State<Home> {
                   ),
                 );
               },
-              title: p.name,
+              title: "My first project",
               songName: p.song,
             )).toList(),
           ),

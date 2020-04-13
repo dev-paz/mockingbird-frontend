@@ -13,12 +13,6 @@ class EditProject extends StatefulWidget {
 
 class _EditProjectState extends State<EditProject> {
 
-//  _onBackPressed(p) {
-//    p.filePath = "";
-//    p.currentProjectID = "";
-//    print("killed the state");
-//  }
-
   _deleteFile(filePath) {
     try {
       final dir = Directory(filePath);
@@ -87,14 +81,36 @@ class _EditProjectState extends State<EditProject> {
                       disabledColor: Colors.grey,
                       disabledTextColor: Colors.black,
                       splashColor: Colors.blueAccent,
-                      onPressed: (){},
+                      onPressed: null,
                       label: Text("Upload",
                         style: TextStyle(fontSize: 16.0),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(12, 120, 12, 12),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: RaisedButton(
+                        color: Colors.blueAccent,
+                        splashColor: Colors.blueAccent,
+                        elevation: 4,
+                        padding: const EdgeInsets.fromLTRB(32, 12, 32, 12),
+                        child: Text("Export Project",
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                        onPressed: null,
+                      ),
+                  ),]
+                ),
+              )
             ],
           ),
         )

@@ -1,6 +1,4 @@
-import 'dart:convert';
 import 'dart:io';
-import 'package:dio/dio.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 
@@ -21,29 +19,6 @@ class ProjectStateProvider  with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> uploadFileToProject() async {
-    FormData formData = new FormData.fromMap({
-      "json": "{}",
-      "project": "http://54.197.222.177/projects/20/",
-      "media": await MultipartFile.fromFile(filePath, filename: "upload.mp4")
-    });
-
-    print(formData.files);
-
-    String basicAuth =
-        'Basic ' + base64Encode(utf8.encode('$username:$password'));
-
-    Dio dio = new Dio();
-    dio.options.headers['Authorization'] = basicAuth;
-    try {
-      Response response = await dio.post(
-          "http://54.197.222.177/files/", data: formData);
-      print(response);
-
-    } catch(e){
-      print(e);
-    }
-  }
 
   Future<void> setProjectFilePath() async {
     final Directory extDir = await getApplicationDocumentsDirectory();

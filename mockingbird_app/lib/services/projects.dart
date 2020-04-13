@@ -10,11 +10,14 @@ class Projects {
   Future<void> getProjects() async {
     Response response = await get('https://mockingbird-backend.herokuapp.com/get_projects');
     List<dynamic> projectsResp = json.decode(response.body);
+    print(projectsResp);
     for(var i=0; i < projectsResp.length; i++){
       Project project = Project(
           name: projectsResp[i]["name"],
           song: projectsResp[i]["song"],
-          id: projectsResp[i]["id"]);
+          id: projectsResp[i]["id"],
+          openshotId: projectsResp[i]["openshot_id"]
+      );
       projects.add(project);
     }
   }
