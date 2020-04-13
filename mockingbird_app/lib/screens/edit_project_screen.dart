@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:mockingbirdapp/camera/camera_setup.dart';
 import 'package:mockingbirdapp/camera/video_preview.dart';
 import 'package:mockingbirdapp/models/ProjectStateProvider.dart';
 import 'package:provider/provider.dart';
@@ -68,8 +69,12 @@ class _EditProjectState extends State<EditProject> {
                       color: Colors.red,
                       padding: EdgeInsets.fromLTRB(12, 6, 12, 6),
                       onPressed: (){
-                        Navigator.pushNamed(context, '/camera');
-                        _deleteFile(projectStateProvider.filePath);},
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                CameraSetup(),
+                          ),
+                        );                        _deleteFile(projectStateProvider.filePath);},
                       label: Text("Record",
                         style: TextStyle(fontSize: 16.0),
                       ),

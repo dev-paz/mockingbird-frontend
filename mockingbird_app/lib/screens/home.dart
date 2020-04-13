@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mockingbirdapp/models/project.dart';
 import 'package:mockingbirdapp/screens/edit_project_screen.dart';
+import 'package:mockingbirdapp/services/auth.dart';
 import 'package:mockingbirdapp/services/projects.dart';
 import 'package:mockingbirdapp/components/loading.dart';
 import 'package:mockingbirdapp/components/project_card.dart';
@@ -14,6 +15,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
+  final AuthService _auth = AuthService();
   bool loading = true;
   List<Project> projects = [
   ];
@@ -38,7 +40,7 @@ class _HomeState extends State<Home> {
   }
   @override
   Widget build(BuildContext context) {
-    return loading ? Loading() :Consumer<ProjectStateProvider>(
+    return Consumer<ProjectStateProvider>(
       builder: (context, projectStateProvider, child) {
         return Scaffold(
           backgroundColor: Colors.grey[200],
@@ -46,8 +48,17 @@ class _HomeState extends State<Home> {
             title: Text('Projects'),
             centerTitle: true,
             backgroundColor: Colors.redAccent,
+            actions: <Widget>[
+              FlatButton.icon(
+                  onPressed: () async{
+                    await _auth.signOut();
+                  },
+                  icon: Icon(Icons.exit_to_app),
+                  label:Text("Sign Out")
+              ),
+            ],
           ),
-          body: Column(
+          body: loading ? Loading(size: 100.0) : Column(
             children: projects.map((p) => ProjectCard(
               onCardPressed: () async {
                 projectStateProvider.currentProjectID = p.id;

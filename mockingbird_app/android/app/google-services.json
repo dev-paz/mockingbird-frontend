@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "502753206140",
+    "firebase_url": "https://mockingbird-287ec.firebaseio.com",
+    "project_id": "mockingbird-287ec",
+    "storage_bucket": "mockingbird-287ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502753206140:android:2020e0277272d1c53f8ef9",
+        "android_client_info": {
+          "package_name": "com.example.mockingbirdapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "502753206140-r0t54gio8gpo53aibqr19dlkpu3ri1jd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDs1mz3SwURD8EzAHL5mNgusRXKpSCpsEU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "502753206140-r0t54gio8gpo53aibqr19dlkpu3ri1jd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
