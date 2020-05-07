@@ -30,15 +30,18 @@ dev_dependencies:
   http: ^0.12.0+4
   flutter_spinkit: "^4.1.2"
   provider: ^4.0.5
+  google_sign_in: ^4.4.1
   camera: ^0.5.7+4
   dio: ^3.0.9
   path_provider:
-  thumbnails:
-    git:
-      url: https://github.com/divyanshub024/Flutter_Thumbnails.git
   video_player:
   esys_flutter_share:
   firebase_auth: ^0.15.5+3
+  chewie_audio: ^1.0.0+1
+  cloud_firestore: ^0.13.5
+  firebase_storage: ^3.1.5
+  chewie: ^0.9.10
+  flip_card: ^0.4.4
 
 
 # For information on the generic Dart part of this file, see the
@@ -51,9 +54,14 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  fonts:
+   - family:  MyFlutterApp
+     fonts:
+       - asset: fonts/MyFlutterApp.ttf
   # To add assets to your application, add an assets section, like this:
-
-  #  - images/a_dot_ham.jpeg
+  assets:
+  - assets/google_logo.png
+  - assets/mockingbird_part_1.mp4
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

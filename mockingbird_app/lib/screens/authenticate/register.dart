@@ -27,7 +27,7 @@ class _RegisterState extends State<Register> {
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
           title: Text("Register"),
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.blueAccent,
           actions: <Widget>[
             FlatButton.icon(
                 onPressed: (){widget.toggleView();},
@@ -82,7 +82,31 @@ class _RegisterState extends State<Register> {
                     },
                   ),
                   SizedBox(height: 20),
-                  Text(error, style: TextStyle(color: Colors.red, fontSize: 20))
+                  Text(error, style: TextStyle(color: Colors.red, fontSize: 20)),
+                  SizedBox(height: 20),
+                  RaisedButton(
+                    onPressed: (){_auth.signInWithGoogle();},
+                    padding: EdgeInsets.fromLTRB(16, 8, 20, 8),
+                    color: Colors.white,
+                    elevation: 4,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Image(image: AssetImage("assets/google_logo.png"), height: 35.0),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                              "Sign in with Google",
+                              style: TextStyle(
+                                  color: Colors.blueAccent,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16
+                              )
+                          ),
+                        )
+                      ],
+                    ),
+                  )
                 ],
               ),
             )
