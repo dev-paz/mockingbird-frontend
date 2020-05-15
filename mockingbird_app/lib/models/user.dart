@@ -1,6 +1,5 @@
 import 'package:http/http.dart';
 import 'dart:convert';
-
 import 'package:mockingbirdapp/models/project.dart';
 
 class User {

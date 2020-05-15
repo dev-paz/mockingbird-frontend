@@ -10,8 +10,9 @@ import 'package:provider/provider.dart';
 
 class CameraSetup extends StatefulWidget {
   final SongPart songPart;
+  final int songLength;
   final ProjectClip currentClip;
-  const CameraSetup({Key key, this.songPart, this.currentClip}) : super(key: key);
+  const CameraSetup({Key key, this.songPart, this.currentClip, this.songLength}) : super(key: key);
 
   @override
   CameraSetupState createState() => CameraSetupState();
@@ -105,17 +106,34 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
             Stack(
               children: <Widget>[
                 _buildCameraPreview(),
-                Positioned(
-                  top: 24.0,
-                  left: 12.0,
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.switch_camera,
-                      color: Colors.white,
+                _isRecording ?  Container() : Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 64,
+                  child: Center(
+                    child: RaisedButton.icon(
+                      icon: Padding(
+                        padding: const EdgeInsets.fromLTRB(8, 8, 0, 8),
+                        child: Icon(Icons.star,
+                        color: Colors.white),
+                      ),
+                      onPressed: (){
+                        startVideoRecording(clipFilePath);
+                        setState(() {
+                          _videoController.play();
+                        });
+                      },
+                      color: Colors.red,
+                      label: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 8, 8, 8),
+                        child: Text("Start recording",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 24
+                          ),
+                        ),
+                      ),
                     ),
-                    onPressed: () {
-                      _onCameraSwitch();
-                    },
                   ),
                 ),
                 Positioned(
@@ -124,14 +142,14 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
                   top: 32.0,
                   child: VideoTimer(
                     key: _timerKey,
+                    songLength: widget.songLength,
+                    stopRecording: () async {
+                      stopVideoRecording();
+                    },
                   ),
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(24, 32, 24, 32),
-              child: _buildBottomNavigationBar(),
-            )
           ],
         ),
       ),

@@ -9,8 +9,7 @@ class AudioPlayer extends StatefulWidget {
 
   AudioPlayer({this.title = 'Chewie Audio Demo', this.audioFile});
   final String title;
-  final String audioFile;
-  //'https://www.w3schools.com/tags/horse.mp3'
+  String audioFile = 'https://www.w3schools.com/tags/horse.mp3';
   @override
   State<StatefulWidget> createState() {
     return _ChewieDemoState();

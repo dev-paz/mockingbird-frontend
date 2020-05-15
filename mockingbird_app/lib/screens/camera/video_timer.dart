@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class VideoTimer extends StatefulWidget {
-  const VideoTimer({Key key}) : super(key: key);
+  int songLength;
+  Function stopRecording;
+  VideoTimer({Key key, this.songLength, this.stopRecording }) : super(key: key);
   @override
   VideoTimerState createState() => VideoTimerState();
 }
@@ -16,11 +18,16 @@ class VideoTimerState extends State<VideoTimer> {
     const oneSec = const Duration(seconds: 1);
     _timer = new Timer.periodic(
       oneSec,
-      (Timer timer) => setState(
-        () {
-          _start = _start + 1;
-        },
-      ),
+      (Timer timer){
+        setState(
+              () {
+            _start = _start + 1;
+          },
+        );
+        if (_start > widget.songLength){
+          widget.stopRecording();
+        }
+      }
     );
   }
 

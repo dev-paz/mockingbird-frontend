@@ -7,7 +7,7 @@ class ProjectService {
 
   String username = 'cloud-admin';
   String password = 'UZTWLVEr6n';
-  String url = 'http://54.208.170.167';
+  final String url = 'http://54.225.39.149';
 
   String projectId;
   Project project;

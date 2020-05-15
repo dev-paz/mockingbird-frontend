@@ -13,6 +13,7 @@ class MusicVideoService {
     try {
       Response response = await get('https://mockingbird-backend.herokuapp.com/get_music_videos');
       List<dynamic> mvResp = json.decode(response.body);
+      if (mvResp == null){ return null; }
       for(var i=0; i < mvResp.length; i++){
         MusicVideo mv = MusicVideo(
           id: mvResp[i]["id"],

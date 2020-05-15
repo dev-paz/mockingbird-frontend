@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mockingbirdapp/components/audio_player.dart';
-import 'package:mockingbirdapp/models/user.dart';
-import 'package:mockingbirdapp/screens/projects/current_projects_screen.dart';
 
 class SongCard extends StatefulWidget {
 

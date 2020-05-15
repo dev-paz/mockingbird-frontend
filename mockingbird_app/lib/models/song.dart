@@ -6,14 +6,17 @@ class Song{
   String title;
   int difficulty;
   String parts;
+  int length;
 
-  Song({ this.title, this.id, this.difficulty, this.parts });
+  Song({ this.title, this.id, this.difficulty, this.parts, this.length });
 
   factory Song.fromJson(Map<String, dynamic> json) {
     int difficulty = json['difficulty'];
+    int length = json['length_seconds'];
     return Song(
         title:json['title'],
         id: json['id'],
+        length: length,
         difficulty: difficulty,
         parts: parseParts(json['parts'])
     );

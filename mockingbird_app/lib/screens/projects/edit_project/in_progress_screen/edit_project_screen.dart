@@ -51,7 +51,11 @@ class _EditProjectScreenState extends State<EditProjectScreen> {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) =>
-          CameraSetup(songPart: currentPart, currentClip: clip),
+          CameraSetup(
+              songPart: currentPart,
+              currentClip: clip,
+              songLength: widget.currentProject.song.length
+          ),
       ),
     );
     _deleteFile(clip);
