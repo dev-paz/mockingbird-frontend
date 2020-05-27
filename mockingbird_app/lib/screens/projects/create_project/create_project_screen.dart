@@ -5,7 +5,7 @@ import 'package:mockingbirdapp/models/song.dart';
 import 'package:mockingbirdapp/models/user.dart';
 import 'package:mockingbirdapp/screens/projects/create_project/select_song_screen.dart';
 import 'package:mockingbirdapp/services/project_service.dart';
-
+import 'package:provider/provider.dart';
 import 'invite_friends_screen.dart';
 
 class CreateProjectScreen extends StatefulWidget {
@@ -200,7 +200,8 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                         () async {
                           setState(() { loading = true; });
                           ProjectService ps = ProjectService();
-                          dynamic resp = await ps.createProject(selectedSong.id, partsToUid, projectName);
+                          User currentUser = Provider.of<User>(context, listen: false);
+                          dynamic resp = await ps.createProject(selectedSong.id, partsToUid, projectName, currentUser.firebaseUserId);
                           if (resp != null){
                             print("create finished");
                             Navigator.pop(context);

@@ -7,8 +7,9 @@ class Song{
   int difficulty;
   String parts;
   int length;
+  String backingTrack;
 
-  Song({ this.title, this.id, this.difficulty, this.parts, this.length });
+  Song({ this.title, this.id, this.difficulty, this.parts, this.length, this.backingTrack });
 
   factory Song.fromJson(Map<String, dynamic> json) {
     int difficulty = json['difficulty'];
@@ -18,7 +19,8 @@ class Song{
         id: json['id'],
         length: length,
         difficulty: difficulty,
-        parts: parseParts(json['parts'])
+        parts: parseParts(json['parts']),
+        backingTrack: json['backing_track']
     );
   }
 }

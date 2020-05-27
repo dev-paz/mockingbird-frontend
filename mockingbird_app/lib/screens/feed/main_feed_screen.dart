@@ -3,6 +3,7 @@ import 'package:mockingbirdapp/components/empty_state.dart';
 import 'package:mockingbirdapp/components/loading.dart';
 import 'package:mockingbirdapp/models/music_video.dart';
 import 'package:mockingbirdapp/screens/feed/music_video_card.dart';
+import 'package:mockingbirdapp/screens/feed/thumbnail_card.dart';
 import 'package:mockingbirdapp/services/music_video_service.dart';
 
 class MainFeed extends StatefulWidget {
@@ -46,11 +47,14 @@ class _MainFeedState extends State<MainFeed> {
           )
       ) : SingleChildScrollView(
         child: Column(
-          children: musicVideos.map((mv) => MusicVideoCard(
+          children: musicVideos.map((mv) => ThumbnailCard(
             id: mv.id,
             songId: mv.song_id,
             created: mv.created,
             url: mv.url,
+            ownerPhoto: mv.owner_photo,
+            songName: mv.song_title,
+            ownerName: mv.owner_name,
           )).toList(),
         ),
       ),

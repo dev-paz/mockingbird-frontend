@@ -3,17 +3,17 @@ import 'package:mockingbirdapp/models/project.dart';
 import 'dart:convert';
 import 'package:mockingbirdapp/models/project_clip.dart';
 
+
 class ProjectService {
 
   String username = 'cloud-admin';
   String password = 'UZTWLVEr6n';
-  final String url = 'http://54.225.39.149';
+  final String url = 'http://3.80.246.206';
 
   String projectId;
   Project project;
   List<Project> projects = [];
   ProjectClip clip;
-
   ProjectService({ this.projectId, this.project});
 
   void printWrapped(String text) {
@@ -21,12 +21,13 @@ class ProjectService {
     pattern.allMatches(text).forEach((match) => print(match.group(0)));
   }
 
-  Future<dynamic> createProject(String songId, Map partsToUids, String name) async {
+  Future<dynamic> createProject(String songId, Map partsToUids, String name, String currentUser) async {
     var headers = {"Content-Type": "application/json"};
     var body = jsonEncode(
           { 'song_id': songId,
             'name': name,
             'clips_to_users': partsToUids,
+            'owner': currentUser,
           }
         );
     http.Response response = await http.post('https://mockingbird-backend.herokuapp.com/create_project',

@@ -20,6 +20,10 @@ class MusicVideoService {
           url: mvResp[i]["url"],
           song_id: mvResp[i]["song_id"],
           created: mvResp[i]["created"],
+          owner: mvResp[i]["owner"],
+          owner_name: mvResp[i]["owner_name"],
+          owner_photo: mvResp[i]["owner_photo"],
+          song_title: mvResp[i]["title"],
         );
         musicVideos.add(mv);
       }

@@ -79,7 +79,7 @@ class _CurrentUserCardState extends State<CurrentUserCard> {
                 ),
               ),
               subtitle: Text("This is the song you'll be re creating!"),
-              title: Text("Lead vocals 1",
+              title: Text("Lead vocals",
                 style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               ),
             ),

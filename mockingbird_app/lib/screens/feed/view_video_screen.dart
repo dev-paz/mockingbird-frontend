@@ -1,29 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:mockingbirdapp/components/loading.dart';
+import 'package:mockingbirdapp/screens/feed/music_video_card.dart';
 import 'package:mockingbirdapp/screens/feed/video_player.dart';
 import 'package:mockingbirdapp/services/music_video_service.dart';
 
-
-class MusicVideoCard extends StatefulWidget {
+class ViewVideoScreen extends StatefulWidget {
   String url;
   String created;
   String songId;
   String id;
 
-  MusicVideoCard({ this.url, this.id, this.created, this.songId });
-
+  ViewVideoScreen({ this.url, this.id, this.created, this.songId });
   @override
-  _MusicVideoCardState createState() => _MusicVideoCardState();
+  _ViewVideoScreenState createState() => _ViewVideoScreenState();
 }
 
-
-
-class _MusicVideoCardState extends State<MusicVideoCard> {
-  bool loading = true;
+class _ViewVideoScreenState extends State<ViewVideoScreen> {
   String downloadURL;
-
-  String username = 'cloud-admin';
-  String password = 'UZTWLVEr6n';
+  bool loading = true;
 
   void  _initVideo() async {
     MusicVideoService mvService = MusicVideoService();
@@ -39,21 +33,22 @@ class _MusicVideoCardState extends State<MusicVideoCard> {
     super.initState();
   }
 
+
   @override
   Widget build(BuildContext context) {
-    return loading ? Loading(size: 50.0) : Card(
-      child: Column(
-        children: <Widget>[
-          ListTile(
-            leading: Icon(Icons.person),
-            title: Text("User's name here"),
-            subtitle: Text(widget.created),
+    return Scaffold(
+      appBar: AppBar(
+      ),
+      body: loading ? Loading(size: 50.0) : Container(
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              MusicVideoPlayer(
+                url: downloadURL,
+              )
+            ],
           ),
-          Center(
-            child: MusicVideoPlayer(
-              url: downloadURL
-            ))
-        ],
+        ),
       ),
     );
   }

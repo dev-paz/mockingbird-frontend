@@ -12,7 +12,7 @@ class Project with ChangeNotifier {
 
   final String uname = 'cloud-admin';
   final String password = 'UZTWLVEr6n';
-  final String url = 'http://54.225.39.149';
+  final String url = 'http://3.80.246.206';
 
   final int PROJECT_STATUS_STARTED = 1;
   final int PROJECT_STATUS_RENDERING = 2;
@@ -62,7 +62,9 @@ class Project with ChangeNotifier {
         "id": song.id,
         "difficulty": song.difficulty,
         "title": song.title,
-        "parts": int.parse(song.parts)
+        "parts": int.parse(song.parts),
+        "length_seconds": song.length,
+        "backing_track": song.backingTrack
       },
       "openshot_id": "$openshotId",
       "clips": clipsJson
