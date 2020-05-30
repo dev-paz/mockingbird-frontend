@@ -11,8 +11,8 @@ import 'package:dio/dio.dart';
 class Project with ChangeNotifier {
 
   final String uname = 'cloud-admin';
-  final String password = 'UZTWLVEr6n';
-  final String url = 'http://3.80.246.206';
+  final String password = '3lUkJFLq5g';
+  final String url = 'http://18.207.252.4';
 
   final int PROJECT_STATUS_STARTED = 1;
   final int PROJECT_STATUS_RENDERING = 2;
@@ -28,6 +28,7 @@ class Project with ChangeNotifier {
   List<User> users;
   List<ProjectClip> clips;
   String exportId;
+  String musicVideo;
 
   Project({
     this.name,
@@ -37,6 +38,7 @@ class Project with ChangeNotifier {
     this.users, this.clips,
     this.status,
     this.exportId,
+    this.musicVideo
   });
 
   factory Project.fromJson(Map<String, dynamic> json) {
@@ -48,6 +50,7 @@ class Project with ChangeNotifier {
         song: parseSong(json['song']),
         clips: parseClips(json['clips']),
         openshotId: int.parse(json["openshot_id"]),
+        musicVideo: json["music_video"]
     );
   }
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mockingbirdapp/screens/feed/main_feed_screen.dart';
 import 'package:mockingbirdapp/screens/projects/create_project/friends_list_screen.dart';
-import 'package:mockingbirdapp/screens/projects/current_projects_screen.dart';
+import 'package:mockingbirdapp/screens/projects/current_projects_tab.dart';
 import 'package:mockingbirdapp/services/auth.dart';
 import 'package:mockingbirdapp/custom_icons/my_flutter_app_icons.dart' as CustomIcon;
 
@@ -19,15 +19,15 @@ class _NavigationScreenState extends State<NavigationScreen> {
   Map<String, Icon> icons =  {
     "Home": Icon(Icons.home),
     "Projects": Icon(Icons.format_paint),
-    "Friends": Icon(Icons.people)
+   // "Friends": Icon(Icons.people)
   };
 
   int _selectedIndex = 0;
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> _widgetOptions = <Widget>[
     MainFeed(),
-    ProjectsList(),
-    FriendsListScreen()
+    CurrentProjectsTab(),
+    //FriendsListScreen()
   ];
 
   void _onItemTapped(int index) {
@@ -40,6 +40,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         leading: Padding(
           padding: const EdgeInsets.only(left: 16.0),
           child: Icon(CustomIcon.MyFlutterApp.twitter_bird),

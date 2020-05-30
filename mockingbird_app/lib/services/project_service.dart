@@ -7,8 +7,8 @@ import 'package:mockingbirdapp/models/project_clip.dart';
 class ProjectService {
 
   String username = 'cloud-admin';
-  String password = 'UZTWLVEr6n';
-  final String url = 'http://3.80.246.206';
+  final String password = '3lUkJFLq5g';
+  final String url = 'http://18.207.252.4';
 
   String projectId;
   Project project;

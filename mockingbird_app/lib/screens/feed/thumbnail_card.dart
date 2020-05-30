@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mockingbirdapp/components/loading.dart';
-import 'package:mockingbirdapp/player_test.dart';
-import 'package:mockingbirdapp/screens/feed/video_player.dart';
 import 'package:mockingbirdapp/screens/feed/view_video_screen.dart';
 import 'package:mockingbirdapp/services/music_video_service.dart';
 
@@ -14,8 +12,9 @@ class ThumbnailCard extends StatefulWidget {
   String ownerPhoto;
   String ownerName;
   String songName;
+  String image;
 
-  ThumbnailCard({ this.url, this.id, this.created, this.songId, this.ownerPhoto, this.songName, this.ownerName });
+  ThumbnailCard({ this.url, this.id, this.created, this.songId, this.ownerPhoto, this.songName, this.ownerName, this.image });
 
   @override
   _ThumbnailCardState createState() => _ThumbnailCardState();
@@ -50,7 +49,13 @@ class _ThumbnailCardState extends State<ThumbnailCard> {
       GestureDetector(
         onTap: () async {
           await Navigator.push(context,
-            MaterialPageRoute(builder: (context) => ViewVideoScreen(url: widget.url, songId: widget.songId, created: widget.created, id: widget.id)),
+            MaterialPageRoute(builder: (context) => ViewVideoScreen(
+              url: widget.url,
+              songId: widget.songId,
+              created: widget.created,
+              id: widget.id,
+            )
+            ),
           );
         },
         child: Card(
@@ -72,15 +77,19 @@ class _ThumbnailCardState extends State<ThumbnailCard> {
                 subtitle: Text(widget.ownerName),
               ),
               Center(
-                  child: Image.network("https://www.designyourway.net/blog/wp-content/uploads/2018/12/music_logo-700x525.jpg")
+                child: AspectRatio(
+                  aspectRatio: 1.5,
+                  child: new Container(
+                    decoration: new BoxDecoration(
+                        image: new DecorationImage(
+                          fit: BoxFit.fitWidth,
+                          alignment: FractionalOffset.topCenter,
+                          image: new NetworkImage(widget.image),
+                        )
+                    ),
+                  ),
+                ),
               ),
-  //          FlatButton(
-  //            onPressed:() async {
-  //              await Navigator.push(context,
-  //                MaterialPageRoute(builder: (context) => ViewVideoScreen(url: widget.url, songId: widget.songId, created: widget.created, id: widget.id)),
-  //              );            },
-  //            child: Text("View"),
-  //          )
             ],
           ),
         ),

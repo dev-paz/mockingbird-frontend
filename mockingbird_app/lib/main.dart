@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mockingbirdapp/models/project.dart';
-import 'package:mockingbirdapp/player_test.dart';
 import 'package:mockingbirdapp/screens/wrapper.dart';
 import 'package:mockingbirdapp/services/auth.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +9,7 @@ import 'models/user.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]).then((_) {
     runApp(MyApp());
   });
@@ -28,7 +28,8 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-        home: Wrapper(),
+          debugShowCheckedModeBanner: false,
+          home: Wrapper(),
       ),
     );
   }

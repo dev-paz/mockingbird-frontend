@@ -7,8 +7,8 @@ import 'package:http/http.dart' as http;
 class ProjectClip {
 
   final String uname = 'cloud-admin';
-  final String password = 'UZTWLVEr6n';
-  final String url = 'http://3.80.246.206';
+  final String password = '3lUkJFLq5g';
+  final String url = 'http://18.207.252.4';
 
   final String id;
   final String songId;
@@ -21,6 +21,7 @@ class ProjectClip {
   final String status;
   final String username;
   final String picture;
+  final String partType;
   Function updateProgressIndicator;
 
 
@@ -37,7 +38,8 @@ class ProjectClip {
         this.status,
         this.picture,
         this.username,
-        this.updateProgressIndicator
+        this.updateProgressIndicator,
+        this.partType
       }
     );
 
@@ -52,7 +54,8 @@ class ProjectClip {
         openshotProjectId: json["openshot_project_id"],
         status: json["status"],
         username: json["username"],
-        picture: json["profile_photo_url"]
+        picture: json["profile_photo_url"],
+        partType: json["part_type"]
     );
   }
 

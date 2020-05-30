@@ -43,7 +43,14 @@ dev_dependencies:
   chewie: ^0.9.10
   flip_card: ^0.4.4
   webview_flutter: ^0.3.21
+  share: ^0.6.4+3
+  flutter_launcher_icons: ^0.7.5
 
+
+flutter_icons:
+  ios: true
+  android: "launcher_icon"
+  image_path: "assets/launcher/app_icon.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -63,6 +70,7 @@ flutter:
   assets:
   - assets/google_logo.png
   - assets/mockingbird_part_1.mp4
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

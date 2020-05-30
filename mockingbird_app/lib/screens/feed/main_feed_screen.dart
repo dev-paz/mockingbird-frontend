@@ -14,14 +14,11 @@ class MainFeed extends StatefulWidget {
 class _MainFeedState extends State<MainFeed> {
   bool loading = true;
   String error = "";
-  List<MusicVideo> musicVideos = [
-    MusicVideo(url: "123", song_id: "song_123", created: "today", id: "mv_123"),
-    MusicVideo(url: "345", song_id: "song_456", created: "today", id: "mv_456"),
-  ];
+  List<MusicVideo> musicVideos;
 
   void _fetchMusicVideos() async {
     MusicVideoService mvService = MusicVideoService();
-    musicVideos = await mvService.getMusicVideos();
+    musicVideos = await mvService.getAllMusicVideos();
     if (musicVideos == null){
       error = "No music videos to show";
     }
@@ -38,6 +35,7 @@ class _MainFeedState extends State<MainFeed> {
 
   @override
   Widget build(BuildContext context) {
+
     return loading ? Loading() : Scaffold(
       backgroundColor: Colors.grey[200],
       body: error != "" ? Center(
@@ -47,15 +45,21 @@ class _MainFeedState extends State<MainFeed> {
           )
       ) : SingleChildScrollView(
         child: Column(
-          children: musicVideos.map((mv) => ThumbnailCard(
-            id: mv.id,
-            songId: mv.song_id,
-            created: mv.created,
-            url: mv.url,
-            ownerPhoto: mv.owner_photo,
-            songName: mv.song_title,
-            ownerName: mv.owner_name,
-          )).toList(),
+          children: musicVideos.map((mv){
+            if (mv.public == true) {
+              return ThumbnailCard(
+                  id: mv.id,
+                  songId: mv.songId,
+                  created: mv.created,
+                  url: mv.url,
+                  ownerPhoto: mv.ownerPhoto,
+                  songName: mv.songTitle,
+                  ownerName: mv.ownerName,
+                  image: mv.albumArt
+              );
+            }
+            return Container();
+          }).toList(),
         ),
       ),
     );

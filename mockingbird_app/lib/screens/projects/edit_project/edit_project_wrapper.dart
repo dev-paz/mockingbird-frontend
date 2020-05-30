@@ -4,6 +4,8 @@ import 'package:mockingbirdapp/components/loading.dart';
 import 'package:mockingbirdapp/models/project.dart';
 import 'package:mockingbirdapp/models/song_part.dart';
 import 'package:mockingbirdapp/models/user.dart';
+import 'package:mockingbirdapp/screens/feed/view_video_screen.dart';
+import 'package:mockingbirdapp/screens/projects/completed_screen.dart';
 import 'package:mockingbirdapp/screens/projects/edit_project/in_progress_screen/edit_project_screen.dart';
 import 'package:mockingbirdapp/screens/projects/edit_project/rendering_project_screen.dart';
 import 'package:mockingbirdapp/services/project_service.dart';
@@ -86,9 +88,7 @@ class _EditProjectWrapperState extends State<EditProjectWrapper> {
         return RenderingScreen();
       }
       case "completed" : {
-        return Center(
-          child: Text("This project is now finished. Go to the main feed to see your video!"),
-        );
+        return CompletedProjectScreen(musicVideoID: currentProject.musicVideo);
       }
     }
     return Container();

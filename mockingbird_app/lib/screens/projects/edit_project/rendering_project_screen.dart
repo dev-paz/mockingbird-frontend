@@ -88,7 +88,6 @@ class _RenderingScreenState extends State<RenderingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print("Re rendering the render loader screen");
     return loading ? Loading(size: 50.0) :
         error != "" ? Center(
           child: EmptyStateWidget(
