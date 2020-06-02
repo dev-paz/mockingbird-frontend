@@ -123,9 +123,6 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
                       ),
                       onPressed: (){
                         startVideoRecording(clipFilePath);
-                        setState(() {
-                          _videoController.play();
-                        });
                       },
                       color: Colors.red,
                       label: Padding(
@@ -180,42 +177,41 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
     );
   }
 
-  Widget _buildBottomNavigationBar() {
-    return Center(
-        child: Stack(
-          children: <Widget>[
-            Transform.scale(
-              scale: 4,
-              child: IconButton(
-                  icon: Icon(Icons.fiber_manual_record,
-                      color: Colors.white
-                  )
-              ),
-            ),
-            Transform.scale(
-              scale: 3,
-              child: IconButton(
-                icon: Icon(
-                  (_isRecording) ? Icons.stop : Icons.fiber_manual_record,
-                  color: (_isRecording) ? Colors.red : Colors.grey[300],
-                ),
-                onPressed: () {
-                  if (_isRecording) {
-                    stopVideoRecording();
-                    setState(() {
-                      _videoController.pause();
-                    });
-                  } else {
-                    startVideoRecording(clipFilePath);
-
-                  }
-                },
-              ),
-            ),
-          ],
-        ),
-      );
-  }
+//  Widget _buildBottomNavigationBar() {
+//    return Center(
+//        child: Stack(
+//          children: <Widget>[
+//            Transform.scale(
+//              scale: 4,
+//              child: IconButton(
+//                  icon: Icon(Icons.fiber_manual_record,
+//                      color: Colors.white
+//                  )
+//              ),
+//            ),
+//            Transform.scale(
+//              scale: 3,
+//              child: IconButton(
+//                icon: Icon(
+//                  (_isRecording) ? Icons.stop : Icons.fiber_manual_record,
+//                  color: (_isRecording) ? Colors.red : Colors.grey[300],
+//                ),
+//                onPressed: () {
+//                  if (_isRecording) {
+//                    stopVideoRecording();
+//                    setState(() {
+//                      _videoController.pause();
+//                    });
+//                  } else {
+//                    startVideoRecording(clipFilePath);
+//                  }
+//                },
+//              ),
+//            ),
+//          ],
+//        ),
+//      );
+//  }
 
 
   Future<void> _onCameraSwitch() async {
