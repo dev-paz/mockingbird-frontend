@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
@@ -9,11 +11,6 @@ import 'package:dio/dio.dart';
 
 
 class Project with ChangeNotifier {
-
-  final String uname = 'cloud-admin';
-  final String password = '3lUkJFLq5g';
-  final String url = 'http://18.206.74.200';
-
   final int PROJECT_STATUS_STARTED = 1;
   final int PROJECT_STATUS_RENDERING = 2;
   final int PROJECT_STATUS_UPLOADING = 3;
@@ -123,12 +120,10 @@ class Project with ChangeNotifier {
   }
 
   Future<double> checkRenderStatus() async {
-    String basicAuth = 'Basic ' + base64Encode(utf8.encode('$uname:$password'));
-    Dio dio = new Dio();
-    dio.options.headers['Authorization'] = basicAuth;
     try {
-      Response openshotRps = await dio.get(url + "/exports/" + exportId + "/");
-      double progress = openshotRps.data["progress"];
+      http.Response response = await http.get('https://mockingbird-backend.herokuapp.com/get_render_status?id='+ exportId);
+      dynamic respBody = jsonDecode(response.body);
+      double progress = respBody["progress"];
       return progress;
     } catch (e) {
       print(e);

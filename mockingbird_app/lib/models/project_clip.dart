@@ -6,10 +6,6 @@ import 'package:http/http.dart' as http;
 
 class ProjectClip {
 
-  final String uname = 'cloud-admin';
-  final String password = '3lUkJFLq5g';
-  final String url = 'http://18.206.74.200';
-
   final String id;
   final String songId;
   final String projectId;
@@ -83,21 +79,17 @@ class ProjectClip {
     return '$dirPath/${id}.mp4';
   }
 
-  //https://github.com/dart-lang/sdk/issues/41451
   Future<bool> uploadFileToProject(filePath) async {
     MultipartFile file = await MultipartFile.fromFile(filePath, filename: "upload.mp4");
     FormData formData = new FormData.fromMap({
       "json": "{}",
-      "project": url + "/projects/" + openshotProjectId  + "/",
+      "project": openshotProjectId,
       "media": file
     });
 
-    String basicAuth =
-        'Basic ' + base64Encode(utf8.encode('$uname:$password'));
     Dio dio = new Dio();
-    dio.options.headers['Authorization'] = basicAuth;
     try {
-      Response openshotRps = await dio.post(url + "/files/",
+      Response openshotRps = await dio.post("https://mockingbird-backend.herokuapp.com/files/",
         data: formData,
         onSendProgress: (int sent, int total) {
           updateProgressIndicator(sent/total);
