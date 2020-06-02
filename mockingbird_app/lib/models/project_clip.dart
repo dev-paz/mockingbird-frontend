@@ -20,7 +20,6 @@ class ProjectClip {
   final String partType;
   Function updateProgressIndicator;
 
-
   ProjectClip (
       {
         this.id,
@@ -80,16 +79,20 @@ class ProjectClip {
   }
 
   Future<bool> uploadFileToProject(filePath) async {
-    MultipartFile file = await MultipartFile.fromFile(filePath, filename: "upload.mp4");
+
+    http.Response response = await http.get('https://mockingbird-backend.herokuapp.com/get_ip');
+    String ip = json.decode(response.body);
+    print("http://" + ip + "/projects/" + openshotProjectId + "/");
+    MultipartFile file = await MultipartFile.fromFile(filePath, filename: id+".mp4");
     FormData formData = new FormData.fromMap({
       "json": "{}",
-      "project": openshotProjectId,
+      "project": "http://" + ip + "/projects/" + openshotProjectId + "/",
       "media": file
     });
 
     Dio dio = new Dio();
     try {
-      Response openshotRps = await dio.post("https://mockingbird-backend.herokuapp.com/files/",
+      Response openshotRps = await dio.post("https://mockingbird-backend.herokuapp.com/upload_video",
         data: formData,
         onSendProgress: (int sent, int total) {
           updateProgressIndicator(sent/total);
