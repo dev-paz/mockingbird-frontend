@@ -21,6 +21,8 @@ class _VideoPreviewState extends State<VideoPreview>
 
   @override
   void initState() {
+    print("printing video path");
+    print(widget.videoPath);
     super.initState();
     _animationController = AnimationController(
       vsync: this,
@@ -49,18 +51,18 @@ class _VideoPreviewState extends State<VideoPreview>
     }
     if (_checkFileExists(widget.videoPath)){
       print("file ready");
+      _controller = await VideoPlayerController.file(File(widget.videoPath))
+        ..initialize().then(
+              (_) {
+            setState(() {
+              firstPass = false;
+            });
+          },
+        ).catchError((e) {
+          print("printing error qwgqergqew");
+          print(e);
+        });
     } else {print("file not ready");}
-    _controller = await VideoPlayerController.file(File(widget.videoPath))
-      ..initialize().then(
-            (_) {
-          setState(() {
-            firstPass = false;
-          });
-        },
-      ).catchError((e) {
-        print("printing error qwgqergqew");
-        print(e);
-      });
   }
 
   @override

@@ -18,7 +18,7 @@ Widget titleCard(List<Widget> stars, bool projectReady, Function _renderProject,
               style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
             ),
           ),
-          AudioPlayer(),
+          //AudioPlayer(),
           SizedBox(height: 16),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),

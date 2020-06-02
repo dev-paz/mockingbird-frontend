@@ -2,13 +2,14 @@ import 'package:http/http.dart' as http;
 import 'package:mockingbirdapp/models/project.dart';
 import 'dart:convert';
 import 'package:mockingbirdapp/models/project_clip.dart';
+import 'dart:io';
 
 
 class ProjectService {
 
   String username = 'cloud-admin';
   final String password = '3lUkJFLq5g';
-  final String url = 'http://18.207.252.4';
+  final String url = 'http://18.206.74.200';
 
   String projectId;
   Project project;

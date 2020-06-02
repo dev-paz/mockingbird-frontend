@@ -31,14 +31,18 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
 
   @override
   void initState() {
+    print("made it here 10");
     currentProject = Provider.of<Project>(context, listen:false);
     _initCamera();
+    print("made it here 20");
+
     _videoController = VideoPlayerController.network(widget.songPart.musicUrl)
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {
         });
       });
+    print("made it here 30");
     super.initState();
   }
 
@@ -203,9 +207,7 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
                     });
                   } else {
                     startVideoRecording(clipFilePath);
-                    setState(() {
-                      _videoController.play();
-                    });
+
                   }
                 },
               ),
@@ -265,6 +267,9 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
       }
       return null;
     }
+    setState(() {
+      _videoController.play();
+    });
     return filePath;
   }
 

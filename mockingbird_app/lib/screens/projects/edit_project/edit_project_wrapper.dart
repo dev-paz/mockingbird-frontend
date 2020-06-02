@@ -4,7 +4,6 @@ import 'package:mockingbirdapp/components/loading.dart';
 import 'package:mockingbirdapp/models/project.dart';
 import 'package:mockingbirdapp/models/song_part.dart';
 import 'package:mockingbirdapp/models/user.dart';
-import 'package:mockingbirdapp/screens/feed/view_video_screen.dart';
 import 'package:mockingbirdapp/screens/projects/completed_screen.dart';
 import 'package:mockingbirdapp/screens/projects/edit_project/in_progress_screen/edit_project_screen.dart';
 import 'package:mockingbirdapp/screens/projects/edit_project/rendering_project_screen.dart';
@@ -32,6 +31,7 @@ class _EditProjectWrapperState extends State<EditProjectWrapper> {
   Future<void> _fetchSongParts() async {
     SongParts instance = SongParts(songId: currentProject.song.id);
     await instance.getSongParts();
+    print(instance.songParts[0].id);
     setState(() {
       songParts = instance.songParts;
     });
@@ -40,7 +40,9 @@ class _EditProjectWrapperState extends State<EditProjectWrapper> {
   Future<void> _loadCurrentProject() async {
     ProjectService projectService = ProjectService(projectId: widget.projectId);
     currentProject = await projectService.getProject();
+    print(currentProject.id);
     if(currentProject == null){
+      print("project is null");
       error = "Couldn't fetch project, check your internect connneection and try again";
     }
     await _fetchSongParts();
@@ -64,6 +66,7 @@ class _EditProjectWrapperState extends State<EditProjectWrapper> {
   void initState() {
     currentUser =  Provider.of<User>(context, listen:false);
     _loadCurrentProject();
+
     super.initState();
   }
 

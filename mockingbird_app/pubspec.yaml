@@ -14,7 +14,7 @@ description: A new Flutter application.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.5.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -38,7 +38,6 @@ dev_dependencies:
   esys_flutter_share:
   firebase_auth: ^0.15.5+3
   chewie_audio: ^1.0.0+1
-  cloud_firestore: ^0.13.5
   firebase_storage: ^3.1.5
   chewie: ^0.9.10
   flip_card: ^0.4.4

@@ -8,7 +8,7 @@ class ProjectClip {
 
   final String uname = 'cloud-admin';
   final String password = '3lUkJFLq5g';
-  final String url = 'http://18.207.252.4';
+  final String url = 'http://18.206.74.200';
 
   final String id;
   final String songId;
@@ -78,9 +78,12 @@ class ProjectClip {
     final Directory extDir = await getApplicationDocumentsDirectory();
     final String dirPath = '${extDir.path}/media';
     await Directory(dirPath).create(recursive: true);
+    print('sdkjwepfj');
+    print('$dirPath/${id}.mp4');
     return '$dirPath/${id}.mp4';
   }
 
+  //https://github.com/dart-lang/sdk/issues/41451
   Future<bool> uploadFileToProject(filePath) async {
     MultipartFile file = await MultipartFile.fromFile(filePath, filename: "upload.mp4");
     FormData formData = new FormData.fromMap({

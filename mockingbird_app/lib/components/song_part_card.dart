@@ -26,10 +26,10 @@ class SongPartCard extends StatelessWidget {
           Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 8, 12, 8),
-                child: AudioPlayer(),
-              ),
+//              Padding(
+//                padding: EdgeInsets.fromLTRB(0, 8, 12, 8),
+//                child: AudioPlayer(),
+//              ),
               Padding(
                 padding: EdgeInsets.only(right: 24),
                 child: ButtonBar(

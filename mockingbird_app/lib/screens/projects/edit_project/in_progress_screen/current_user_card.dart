@@ -20,12 +20,16 @@ class CurrentUserCard extends StatefulWidget {
 class _CurrentUserCardState extends State<CurrentUserCard> {
   double p = 0;
   bool uploadInProgress = false;
-  String clipFilePath = "";
+  String clipFilePath = "/var/mobile/Containers/Data/Application/B2B90156-E389-418F-8C57-FB9ECE10692B/Documents/media/clip_849b31eb-5b3a-4687-890c-7f8d39098492.mp4";
 
   bool _checkFileExists(filePath){
+    print("made it here1");
     if(FileSystemEntity.typeSync(filePath) != FileSystemEntityType.notFound){
+      print("made it here2");
       return true;
     }
+
+    print("made it here3");
     return false;
   }
 
@@ -36,7 +40,11 @@ class _CurrentUserCardState extends State<CurrentUserCard> {
   }
 
    _uploadFile(ProjectClip clip) async {
-    setState(() {
+     var file = File(clipFilePath);
+     print(file.lengthSync());
+     print (await file.length());
+
+     setState(() {
       uploadInProgress = true;
     });
     clip.updateProgressIndicator = _progressIndicator;
@@ -86,9 +94,7 @@ class _CurrentUserCardState extends State<CurrentUserCard> {
             uploadInProgress ? Padding(
               padding: const EdgeInsets.all(24.0),
               child: LinearProgressIndicator(value: p),
-            ) : VideoPreview(
-                videoPath: clipFilePath
-            ),
+            ) : Container(),
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Row(

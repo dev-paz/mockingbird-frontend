@@ -1,6 +1,5 @@
 import 'package:chewie_audio/chewie_audio.dart';
 import 'package:chewie_audio/src/chewie_player.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 

@@ -41,15 +41,22 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
     SongParts instance = SongParts(
       songId: widget.song.id
     );
+    print("made it here");
+
     await instance.getSongParts();
+    print("made it here");
+
     setState(() {
       songParts = instance.songParts;
       loading = false;
     });
+    print("made it here");
+
   }
 
   @override
   void initState() {
+    print("made it here");
     super.initState();
     _fetchSongParts();
   }

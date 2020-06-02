@@ -12,7 +12,7 @@ class Project with ChangeNotifier {
 
   final String uname = 'cloud-admin';
   final String password = '3lUkJFLq5g';
-  final String url = 'http://18.207.252.4';
+  final String url = 'http://18.206.74.200';
 
   final int PROJECT_STATUS_STARTED = 1;
   final int PROJECT_STATUS_RENDERING = 2;

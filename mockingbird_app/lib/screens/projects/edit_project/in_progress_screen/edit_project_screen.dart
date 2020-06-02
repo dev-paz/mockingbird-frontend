@@ -103,7 +103,7 @@ class _EditProjectScreenState extends State<EditProjectScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            titleCard(stars, projectReadyToSubmit, widget.renderProject, widget.currentProject),
+           titleCard(stars, projectReadyToSubmit, widget.renderProject, widget.currentProject),
             SizedBox(height: 4),
             Padding(
               padding: const EdgeInsets.all(12),

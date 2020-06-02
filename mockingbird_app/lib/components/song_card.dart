@@ -50,7 +50,7 @@ class _SongCardState extends State<SongCard> {
                   style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                 ),
               ),
-              AudioPlayer(),
+              //AudioPlayer(),
               SizedBox(height: 16),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
