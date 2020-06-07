@@ -5,7 +5,6 @@ import 'package:mockingbirdapp/models/project_clip.dart';
 import 'package:mockingbirdapp/models/song.dart';
 import 'package:mockingbirdapp/models/user.dart';
 import 'dart:convert';
-import 'dart:io' show Platform;
 
 
 class Project with ChangeNotifier {
@@ -24,7 +23,6 @@ class Project with ChangeNotifier {
   List<ProjectClip> clips;
   String exportId;
   String musicVideo;
-  String platform;
 
   Project({
     this.name,
@@ -34,8 +32,7 @@ class Project with ChangeNotifier {
     this.users, this.clips,
     this.status,
     this.exportId,
-    this.musicVideo,
-    this.platform
+    this.musicVideo
   });
 
   factory Project.fromJson(Map<String, dynamic> json) {
@@ -57,7 +54,6 @@ class Project with ChangeNotifier {
 
     Map<String, dynamic> projectJson = {
       'name': name,
-      'platform': platform,
       'id': id,
       'song': {
         "id": song.id,
@@ -93,13 +89,7 @@ class Project with ChangeNotifier {
   }
 
   Future<dynamic> renderProject() async {
-    if (Platform.isAndroid) {
-      platform = "android";
-    } else if (Platform.isIOS) {
-      platform = "ios";
-    }
     var headers = {"Content-Type": "application/json"};
-    print(platform);
     Map<String, dynamic> body = this.toJson();
     print(body.toString());
     http.Response response = await http.post('https://mockingbird-backend.herokuapp.com/render_video',

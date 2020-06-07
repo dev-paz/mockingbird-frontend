@@ -99,13 +99,22 @@ class ProjectClip {
         },
       );
 
+      String platform;
+      if (Platform.isAndroid) {
+        platform = "android";
+      } else if (Platform.isIOS) {
+        platform = "ios";
+      }
+
       var headers = {"Content-Type": "application/json"};
       var body = jsonEncode(
           {
             'id': id,
             'file': openshotRps.data["url"],
+            'platform': platform
           }
       );
+      print(body);
       http.Response response = await http.post('https://mockingbird-backend.herokuapp.com/update_clip',
           body: body,
           headers: headers
