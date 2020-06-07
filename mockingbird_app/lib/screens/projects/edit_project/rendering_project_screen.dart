@@ -28,22 +28,11 @@ class _RenderingScreenState extends State<RenderingScreen> {
   Timer _timer;
 
   void _checkRenderStatus() async {
-    double progress = await widget.project.checkRenderStatus();
-    if (progress == null){
-      setState(() {
-        error = "Couldn't get project status";
-      });
-      _timer.cancel();
-    }
-    setState(() {
-      loading = false;
-      renderProgress = progress;
-    });
-
     _timer = Timer.periodic(new Duration(seconds: 5), (timer) async {
       print("next loop is starting now");
       if (renderProgress < 99.9) {
         double progress = await widget.project.checkRenderStatus();
+        print(progress);
         if (progress == null){
           setState(() {
             error = "Couldn't get project status";
@@ -52,6 +41,7 @@ class _RenderingScreenState extends State<RenderingScreen> {
         }
         setState(() {
           renderProgress = progress;
+          loading = false;
         });
       } else {
         currentProject = await projectService.getProject();

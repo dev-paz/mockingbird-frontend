@@ -97,7 +97,7 @@ class _CurrentUserCardState extends State<CurrentUserCard> {
             ) : Container(),
             Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Row(
+              child: uploadInProgress ? Container() :  Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   Container(

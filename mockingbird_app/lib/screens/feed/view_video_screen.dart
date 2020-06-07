@@ -14,12 +14,9 @@ class ViewVideoScreen extends StatefulWidget {
 }
 
 class _ViewVideoScreenState extends State<ViewVideoScreen> {
-  String downloadURL;
   bool loading = true;
 
   void  _initVideo() async {
-    MusicVideoService mvService = MusicVideoService();
-    downloadURL = await mvService.getDownloadURL(widget.url);
     setState(() {
       loading = false;
     });
@@ -41,7 +38,7 @@ class _ViewVideoScreenState extends State<ViewVideoScreen> {
           child: Column(
             children: <Widget>[
               MusicVideoPlayer(
-                url: downloadURL,
+                url: widget.url,
               )
             ],
           ),

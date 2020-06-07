@@ -19,8 +19,9 @@ class _CompletedProjectScreenState extends State<CompletedProjectScreen> {
 
   void  _initVideo() async {
     MusicVideoService mvService = MusicVideoService();
-    downloadURL = await mvService.getDownloadURL(widget.musicVideoID + ".mp4");
+    //downloadURL = await mvService.getDownloadURL(widget.musicVideoID + ".mp4");
     currentMusicVideo = await mvService.getMusicVideo(widget.musicVideoID);
+    print(currentMusicVideo.url);
     setState(() {
       loading = false;
     });
@@ -46,7 +47,7 @@ class _CompletedProjectScreenState extends State<CompletedProjectScreen> {
           child: Column(
             children: <Widget>[
               MusicVideoPlayer(
-                url: downloadURL,
+                url: currentMusicVideo.url,
               ),
               Row(
                 children: <Widget>[

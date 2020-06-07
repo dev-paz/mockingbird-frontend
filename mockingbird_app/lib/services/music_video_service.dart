@@ -33,6 +33,7 @@ class MusicVideoService {
   Future<MusicVideo> getMusicVideo(String musicVideoID) async {
     Response response;
     try {
+      print(musicVideoID);
       response = await get('https://mockingbird-backend.herokuapp.com/get_music_video?id='+ musicVideoID);
     } catch (e) {
       print(e);

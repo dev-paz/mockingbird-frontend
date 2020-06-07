@@ -24,14 +24,11 @@ class ThumbnailCard extends StatefulWidget {
 
 class _ThumbnailCardState extends State<ThumbnailCard> {
   bool loading = true;
-  String downloadURL;
-
   String username = 'cloud-admin';
   String password = 'UZTWLVEr6n';
 
   void  _initVideo() async {
-    MusicVideoService mvService = MusicVideoService();
-    downloadURL = await mvService.getDownloadURL(widget.url);
+
     setState(() {
       loading = false;
     });

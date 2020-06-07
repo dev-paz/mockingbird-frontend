@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mockingbirdapp/components/empty_state.dart';
 import 'package:mockingbirdapp/components/loading.dart';
 import 'package:mockingbirdapp/models/music_video.dart';
-import 'package:mockingbirdapp/screens/feed/music_video_card.dart';
 import 'package:mockingbirdapp/screens/feed/thumbnail_card.dart';
 import 'package:mockingbirdapp/services/music_video_service.dart';
 

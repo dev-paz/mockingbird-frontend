@@ -46,6 +46,11 @@ class _CurrentProjectsTabState extends State<CurrentProjectsTab> {
       if(currentUser.projects[i].status == projectStatus){
         counter++;
       }
+      if(currentUser.projects[i].status == "rendering"){
+        if(projectStatus == "started"){
+          counter++;
+        }
+      }
     }
     if (counter == 0) {
       return EmptyStateWidget(
@@ -66,6 +71,17 @@ class _CurrentProjectsTabState extends State<CurrentProjectsTab> {
               project: p,
             );
           } else {
+            if(p.status == "rendering"){
+              if(projectStatus == "started"){
+                return ProjectCard(
+                  onCardPressed: () async {
+                    currentProject.id = p.id;
+                    _navigateEditProjectScreen(context, p.id, p.name);
+                  },
+                  project: p,
+                );
+              }
+              }
             return Container();
           }
         }
@@ -115,7 +131,8 @@ class _CurrentProjectsTabState extends State<CurrentProjectsTab> {
                                 fontSize: 20
                             )
                         ),
-                      ),                    ],
+                      ),
+                    ],
                   ),
                 ],
               ),
