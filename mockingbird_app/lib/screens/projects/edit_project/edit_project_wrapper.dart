@@ -47,6 +47,7 @@ class _EditProjectWrapperState extends State<EditProjectWrapper> {
     }
     await _fetchSongParts();
     setState(() { loading = false; });
+    print(currentProject.clips[0].platform);
   }
 
   reload(){
@@ -88,7 +89,10 @@ class _EditProjectWrapperState extends State<EditProjectWrapper> {
         );
       }
       case "uploading" : {
-        return RenderingScreen();
+        return RenderingScreen(
+          reloadProject: (){reload();},
+          project: currentProject,
+        );
       }
       case "completed" : {
         return CompletedProjectScreen(musicVideoID: currentProject.musicVideo);

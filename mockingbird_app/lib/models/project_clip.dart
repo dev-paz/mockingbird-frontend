@@ -18,6 +18,7 @@ class ProjectClip {
   final String username;
   final String picture;
   final String partType;
+  String platform;
   Function updateProgressIndicator;
 
   ProjectClip (
@@ -34,7 +35,8 @@ class ProjectClip {
         this.picture,
         this.username,
         this.updateProgressIndicator,
-        this.partType
+        this.partType,
+        this.platform
       }
     );
 
@@ -50,7 +52,8 @@ class ProjectClip {
         status: json["status"],
         username: json["username"],
         picture: json["profile_photo_url"],
-        partType: json["part_type"]
+        partType: json["part_type"],
+        platform: json["platform"]
     );
   }
 
@@ -64,7 +67,8 @@ class ProjectClip {
       "file": file,
       "openshot_id": openshotProjectId,
       "openshot_url": openshotProjectURL,
-      "status": status
+      "status": status,
+      "platform": platform
     };
     return userJson;
   }
@@ -99,7 +103,6 @@ class ProjectClip {
         },
       );
 
-      String platform;
       if (Platform.isAndroid) {
         platform = "android";
       } else if (Platform.isIOS) {

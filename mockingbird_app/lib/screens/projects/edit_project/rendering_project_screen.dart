@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:mockingbirdapp/components/empty_state.dart';
 import 'package:mockingbirdapp/components/loading.dart';
