@@ -122,6 +122,9 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
                         color: Colors.white),
                       ),
                       onPressed: (){
+                        setState(() {
+                          _videoController.play();
+                        });
                         startVideoRecording(clipFilePath);
                       },
                       color: Colors.red,
@@ -177,68 +180,6 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
     );
   }
 
-//  Widget _buildBottomNavigationBar() {
-//    return Center(
-//        child: Stack(
-//          children: <Widget>[
-//            Transform.scale(
-//              scale: 4,
-//              child: IconButton(
-//                  icon: Icon(Icons.fiber_manual_record,
-//                      color: Colors.white
-//                  )
-//              ),
-//            ),
-//            Transform.scale(
-//              scale: 3,
-//              child: IconButton(
-//                icon: Icon(
-//                  (_isRecording) ? Icons.stop : Icons.fiber_manual_record,
-//                  color: (_isRecording) ? Colors.red : Colors.grey[300],
-//                ),
-//                onPressed: () {
-//                  if (_isRecording) {
-//                    stopVideoRecording();
-//                    setState(() {
-//                      _videoController.pause();
-//                    });
-//                  } else {
-//                    startVideoRecording(clipFilePath);
-//                  }
-//                },
-//              ),
-//            ),
-//          ],
-//        ),
-//      );
-//  }
-
-
-  Future<void> _onCameraSwitch() async {
-    final CameraDescription cameraDescription =
-        (_controller.description == _cameras[0]) ? _cameras[1] : _cameras[0];
-    if (_controller != null) {
-      await _controller.dispose();
-    }
-    _controller = CameraController(cameraDescription, ResolutionPreset.medium);
-    _controller.addListener(() {
-      if (mounted) setState(() {});
-      if (_controller.value.hasError) {
-        showInSnackBar('Camera error ${_controller.value.errorDescription}');
-      }
-    });
-
-    try {
-      await _controller.initialize();
-    } on CameraException catch (e) {
-      _showCameraException(e);
-    }
-
-    if (mounted) {
-      setState(() {});
-    }
-  }
-
 
   Future<String> startVideoRecording(filePath) async {
     if (!_controller.value.isInitialized) {
@@ -263,9 +204,7 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
       }
       return null;
     }
-    setState(() {
-      _videoController.play();
-    });
+
     return filePath;
   }
 
