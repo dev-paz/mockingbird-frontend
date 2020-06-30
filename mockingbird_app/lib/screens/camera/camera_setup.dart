@@ -1,10 +1,12 @@
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:mockingbirdapp/components/loading.dart';
 import 'package:mockingbirdapp/models/project.dart';
 import 'package:mockingbirdapp/models/project_clip.dart';
 import 'package:mockingbirdapp/models/song_part.dart';
 import 'package:mockingbirdapp/screens/camera/video_timer.dart';
+import 'package:mockingbirdapp/services/song_parts.dart';
 import 'package:video_player/video_player.dart';
 import 'package:provider/provider.dart';
 
@@ -26,24 +28,28 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
   List<CameraDescription> _cameras;
   bool _isRecording = false;
   String clipFilePath;
+  bool fileDownloading = true;
 
   Project currentProject;
 
   @override
   void initState() {
-    print("made it here 10");
     currentProject = Provider.of<Project>(context, listen:false);
     _initCamera();
-    print("made it here 20");
+    _initKaraokeVideo();
+    super.initState();
+  }
 
-    _videoController = VideoPlayerController.network(widget.songPart.musicUrl)
+  _initKaraokeVideo() async {
+    SongParts songPartService = SongParts();
+    String filePath = await songPartService.downloadSongPart(widget.songPart.musicUrl, "karaoke_video");
+    _videoController = VideoPlayerController.file(File(filePath))
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {
+          fileDownloading = false;
         });
       });
-    print("made it here 30");
-    super.initState();
   }
 
   Future<void> _initCamera() async {
@@ -89,7 +95,7 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
       backgroundColor: Colors.black,
       key: _scaffoldKey,
       extendBody: true,
-      body: SingleChildScrollView(
+      body: fileDownloading ? Loading() : SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min  ,
           children: <Widget>[
@@ -122,9 +128,6 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
                         color: Colors.white),
                       ),
                       onPressed: (){
-                        setState(() {
-                          _videoController.play();
-                        });
                         startVideoRecording(clipFilePath);
                       },
                       color: Colors.red,
@@ -204,7 +207,9 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
       }
       return null;
     }
-
+    setState(() {
+      _videoController.play();
+    });
     return filePath;
   }
 
