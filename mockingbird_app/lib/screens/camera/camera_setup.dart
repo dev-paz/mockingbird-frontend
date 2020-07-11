@@ -127,8 +127,12 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
                         child: Icon(Icons.star,
                         color: Colors.white),
                       ),
-                      onPressed: (){
-                        startVideoRecording(clipFilePath);
+                      onPressed: () async {
+                        await startVideoRecording(clipFilePath);
+                        _videoController.play();
+                        setState(() {
+                          _isRecording = true;
+                        });
                       },
                       color: Colors.red,
                       label: Padding(
@@ -188,28 +192,26 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
     if (!_controller.value.isInitialized) {
       return null;
     }
-    setState(() {
-      _isRecording = true;
-    });
     _deleteFile(filePath);
-    _timerKey.currentState.startTimer();
-
     if (_controller.value.isRecordingVideo) {
       // A recording is already started, do nothing.
       return null;
     }
 
     try {
+      DateTime start = DateTime.now();
       await _controller.startVideoRecording(filePath);
+      DateTime end = DateTime.now();
+      print("Time to start video");
+      print(end.difference(start));
+      print(start);
     } on CameraException catch (e) {
       _showCameraException(e);
       if (e.code == "fileExists") {
       }
       return null;
     }
-    setState(() {
-      _videoController.play();
-    });
+    _timerKey.currentState.startTimer();
     return filePath;
   }
 
