@@ -46,9 +46,9 @@ class _EditProjectScreenState extends State<EditProjectScreen> {
     return currentPart;
   }
 
-  void _openCamera(ProjectClip clip){
+  void _openCamera(ProjectClip clip) async {
     SongPart currentPart = _getSelectedSongPart(clip);
-    Navigator.of(context).push(
+    await Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) =>
           CameraSetup(
@@ -58,7 +58,9 @@ class _EditProjectScreenState extends State<EditProjectScreen> {
           ),
       ),
     );
-    _deleteFile(clip);
+    setState(() {
+      _deleteFile(clip);
+    });
   }
 
   void _deleteFile(ProjectClip clip) async {

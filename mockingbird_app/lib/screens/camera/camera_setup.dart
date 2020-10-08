@@ -129,7 +129,11 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
                       ),
                       onPressed: () async {
                         await startVideoRecording(clipFilePath);
+                        DateTime start = DateTime.now();
                         _videoController.play();
+                        DateTime end = DateTime.now();
+                        print("Time to start music");
+                        print(end.difference(start));
                         setState(() {
                           _isRecording = true;
                         });
@@ -204,7 +208,6 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
       DateTime end = DateTime.now();
       print("Time to start video");
       print(end.difference(start));
-      print(start);
     } on CameraException catch (e) {
       _showCameraException(e);
       if (e.code == "fileExists") {
