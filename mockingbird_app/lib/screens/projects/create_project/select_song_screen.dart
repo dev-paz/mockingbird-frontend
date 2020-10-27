@@ -3,6 +3,7 @@ import 'package:mockingbirdapp/components/loading.dart';
 import 'package:mockingbirdapp/components/song_card.dart';
 import 'package:mockingbirdapp/models/song.dart';
 import 'package:mockingbirdapp/services/songs.dart';
+import 'package:mockingbirdapp/screens/projects/create_project/freestyle_card.dart';
 
 class SongsList extends StatefulWidget {
   @override
@@ -13,6 +14,7 @@ class _SongsListState extends State<SongsList> {
 
   bool loading = true;
   List<Song> songs = [];
+  Song freestyleSong;
 
   getBackendSongs() async {
     setState(() {
@@ -40,18 +42,25 @@ class _SongsListState extends State<SongsList> {
         backgroundColor: Colors.grey[200],
         body: loading ? Loading(size: 100.0) : SingleChildScrollView(
           child: Column(
-            children: songs.map((s) => new InkWell(
-              onTap: () async {
-                Navigator.pop(context, s);
-              },
-              child: SongCard(
-                title: s.title,
-                id: s.id,
-                difficulty: s.difficulty,
-                parts: s.parts,
+            children: <Widget>[
+              FreestlyeCard(
+
               ),
-            )).toList(),
-            ),
+              Column(
+                children: songs.map((s) => new InkWell(
+                  onTap: () async {
+                    Navigator.pop(context, s);
+                  },
+                  child: SongCard(
+                    title: s.title,
+                    id: s.id,
+                    difficulty: s.difficulty,
+                    parts: s.parts,
+                  ),
+                )).toList(),
+                ),
+            ],
+          ),
         ),
     );
   }

@@ -38,25 +38,40 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
   bool loading = true;
 
   _fetchSongParts() async {
-    SongParts instance = SongParts(
-      songId: widget.song.id
-    );
-    print("made it here");
 
-    await instance.getSongParts();
-    print("made it here");
+    if (widget.song.id != "freestyle"){
+      SongParts instance = SongParts(
+          songId: widget.song.id
+      );
+      await instance.getSongParts();
 
-    setState(() {
-      songParts = instance.songParts;
-      loading = false;
-    });
-    print("made it here");
-
+      setState(() {
+        songParts = instance.songParts;
+        loading = false;
+      });
+    } else {
+      print("hellowqrger");
+      List<SongPart> freestyleSongParts = List<SongPart>();
+      print(widget.song.parts);
+      for (var i = 1; i <= double.parse(widget.song.parts); i++){
+        SongPart sp = SongPart(
+          songId: widget.song.id,
+          part: i,
+          partType: "",
+          musicUrl: "",
+          id: "freestyle_" + i.toString()
+        );
+        freestyleSongParts.add(sp);
+      }
+      setState(() {
+        songParts = freestyleSongParts;
+        loading = false;
+      });
+    }
   }
 
   @override
   void initState() {
-    print("made it here");
     super.initState();
     _fetchSongParts();
   }

@@ -128,6 +128,8 @@ PODS:
     - Flutter
   - path_provider_macos (0.0.1):
     - Flutter
+  - path_provider_windows (0.0.1):
+    - Flutter
   - PromisesObjC (1.2.8)
   - screen (0.0.1):
     - Flutter
@@ -156,6 +158,7 @@ DEPENDENCIES:
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - path_provider_linux (from `.symlinks/plugins/path_provider_linux/ios`)
   - path_provider_macos (from `.symlinks/plugins/path_provider_macos/ios`)
+  - path_provider_windows (from `.symlinks/plugins/path_provider_windows/ios`)
   - screen (from `.symlinks/plugins/screen/ios`)
   - share (from `.symlinks/plugins/share/ios`)
   - video_player (from `.symlinks/plugins/video_player/ios`)
@@ -212,6 +215,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider_linux/ios"
   path_provider_macos:
     :path: ".symlinks/plugins/path_provider_macos/ios"
+  path_provider_windows:
+    :path: ".symlinks/plugins/path_provider_windows/ios"
   screen:
     :path: ".symlinks/plugins/screen/ios"
   share:
@@ -257,6 +262,7 @@ SPEC CHECKSUMS:
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   path_provider_linux: 4d630dc393e1f20364f3e3b4a2ff41d9674a84e4
   path_provider_macos: f760a3c5b04357c380e2fddb6f9db6f3015897e0
+  path_provider_windows: a2b81600c677ac1959367280991971cb9a1edb3b
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   screen: abd91ca7bf3426e1cc3646d27e9b2358d6bf07b0
   share: 0b2c3e82132f5888bccca3351c504d0003b3b410

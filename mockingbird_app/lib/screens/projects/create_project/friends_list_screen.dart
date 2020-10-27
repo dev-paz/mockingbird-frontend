@@ -46,13 +46,15 @@ class _FriendsListScreenState extends State<FriendsListScreen> {
       appBar: AppBar(
       ),
       backgroundColor: Colors.grey[200],
-      body: loading ? Loading(size: 100.0) : Column(
-        children: friends.map((u) =>
-            UserCard(
-              inviteFriend: (){inviteFriend(u);},
-              name: u.name,
-              photo: u.picture,
-            )).toList(),
+      body: loading ? Loading(size: 100.0) : SingleChildScrollView(
+        child: Column(
+          children: friends.map((u) =>
+              UserCard(
+                inviteFriend: (){inviteFriend(u);},
+                name: u.name,
+                photo: u.picture,
+              )).toList(),
+        ),
       ),
     );
   }
