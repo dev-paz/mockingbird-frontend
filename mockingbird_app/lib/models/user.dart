@@ -57,6 +57,8 @@ class User {
   Future<bool> getAllProjects() async {
     List<Project> projectsList = [];
     Response response;
+    print(firebaseUserId);
+
     try {
       response = await get('https://mockingbird-backend.herokuapp.com/get_all_projects?user_id=' + firebaseUserId);
     }catch (e) {
@@ -74,6 +76,8 @@ class User {
       projectsList.add(project);
     }
     projects = projectsList;
+    print("oiyg");
+    print(projectsList[0].name);
     return true;
   }
 }

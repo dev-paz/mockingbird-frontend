@@ -61,7 +61,8 @@ class Project with ChangeNotifier {
         "title": song.title,
         "parts": int.parse(song.parts),
         "length_seconds": song.length,
-        "backing_track": song.backingTrack
+        "backing_track": song.backingTrack,
+        "tempo": song.tempo
       },
       "openshot_id": "$openshotId",
       "clips": clipsJson

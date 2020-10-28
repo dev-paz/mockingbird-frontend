@@ -15,13 +15,15 @@ class ProjectService {
     pattern.allMatches(text).forEach((match) => print(match.group(0)));
   }
 
-  Future<dynamic> createProject(String songId, Map partsToUids, String name, String currentUser) async {
+  Future<dynamic> createProject(String songId, Map partsToUids, String name, String currentUser, String tempo, String length) async {
     var headers = {"Content-Type": "application/json"};
     var body = jsonEncode(
           { 'song_id': songId,
             'name': name,
             'clips_to_users': partsToUids,
             'owner': currentUser,
+            'tempo': tempo,
+            'length': length
           }
         );
     http.Response response = await http.post('https://mockingbird-backend.herokuapp.com/create_project',
@@ -37,6 +39,7 @@ class ProjectService {
   Future<Project> getProject() async {
     http.Response response;
     try {
+      print(projectId);
       response = await http.get('https://mockingbird-backend.herokuapp.com/get_project?id='+ projectId);
     }catch (e) {
       print(e);

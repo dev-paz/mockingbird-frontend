@@ -37,7 +37,7 @@ class _SongCardState extends State<SongCard> {
   @override
   Widget build(BuildContext context) {
 
-    return  Center(
+    return widget.title.contains("freestyle") ? Container() : Center(
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(12.0),

@@ -42,6 +42,7 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
 
   _initKaraokeVideo() async {
     SongParts songPartService = SongParts();
+
     String filePath = await songPartService.downloadSongPart(widget.songPart.musicUrl, "karaoke_video");
     _videoController = VideoPlayerController.file(File(filePath))
       ..initialize().then((_) {
@@ -108,8 +109,7 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
                         ? AspectRatio(
                       aspectRatio: _videoController.value.aspectRatio,
                       child: VideoPlayer(_videoController),
-                    )
-                        : Container(),
+                    ) : Container(),
                   )
               ),
             ),
@@ -157,7 +157,7 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
                   top: 32.0,
                   child: VideoTimer(
                     key: _timerKey,
-                    songLength: widget.songLength,
+                    songLength: int.parse(widget.currentClip.length),
                     stopRecording: () async {
                       stopVideoRecording();
                     },
@@ -193,6 +193,7 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
 
 
   Future<String> startVideoRecording(filePath) async {
+    print("made it here 10");
     if (!_controller.value.isInitialized) {
       return null;
     }
@@ -214,6 +215,7 @@ class CameraSetupState extends State<CameraSetup> with AutomaticKeepAliveClientM
       }
       return null;
     }
+
     _timerKey.currentState.startTimer();
     return filePath;
   }

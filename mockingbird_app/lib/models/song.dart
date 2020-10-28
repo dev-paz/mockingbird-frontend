@@ -8,8 +8,9 @@ class Song{
   String parts;
   int length;
   String backingTrack;
+  String tempo;
 
-  Song({ this.title, this.id, this.difficulty, this.parts, this.length, this.backingTrack });
+  Song({ this.title, this.id, this.difficulty, this.parts, this.length, this.backingTrack, this.tempo });
 
   factory Song.fromJson(Map<String, dynamic> json) {
     int difficulty = json['difficulty'];
@@ -20,7 +21,8 @@ class Song{
         length: length,
         difficulty: difficulty,
         parts: parseParts(json['parts']),
-        backingTrack: json['backing_track']
+        backingTrack: json['backing_track'],
+        tempo: json['tempo']
     );
   }
 }
@@ -30,3 +32,4 @@ String parseParts(int parts){
   assert(partsString is String);
   return partsString;
 }
+

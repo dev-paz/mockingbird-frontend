@@ -19,9 +19,9 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
   bool loading = false;
 
   String projectName = "";
-  Song selectedSong;
   Map partsToUser;
   Map partsToUid;
+  Song selectedSong;
 
   _showSongsList(BuildContext context) async {
     Song result = await Navigator.push(
@@ -201,7 +201,14 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                           setState(() { loading = true; });
                           ProjectService ps = ProjectService();
                           User currentUser = Provider.of<User>(context, listen: false);
-                          dynamic resp = await ps.createProject(selectedSong.id, partsToUid, projectName, currentUser.firebaseUserId);
+                          dynamic resp = await ps.createProject(
+                              selectedSong.id,
+                              partsToUid,
+                              projectName,
+                              currentUser.firebaseUserId,
+                              selectedSong.tempo,
+                              selectedSong.length.toString()
+                          );
                           if (resp != null){
                             print("create finished");
                             Navigator.pop(context);

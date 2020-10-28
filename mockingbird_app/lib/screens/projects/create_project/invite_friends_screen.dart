@@ -39,7 +39,7 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
 
   _fetchSongParts() async {
 
-    if (widget.song.id != "freestyle"){
+    if (widget.song.id != "song_c34e63dc-76c4-4755-b87c-4972012fc4e2"){
       SongParts instance = SongParts(
           songId: widget.song.id
       );

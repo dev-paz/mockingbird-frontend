@@ -12,20 +12,28 @@ class _FreestlyeCardState extends State<FreestlyeCard> {
   double _tempoSliderValue = 80;
   double _lengthSliderValue = 30;
   double _singersSliderValue = 2;
+
+  Map _partsToSongID = {
+    2: "song_67453f0b-b8fd-4d5a-9e1f-70af6b9983e7",
+    3: "song_c88c49ab-3cbe-4489-b1f5-e6a81d382931",
+    4: "song_3bf2c00d-7484-496d-a9c1-9e3cb8edb404",
+    5: "song_a7efd924-bd24-4158-b467-51bb1f008720"
+  };
+
   Song freestyleSong = Song(
     backingTrack: "80",
     parts: "2",
     length: 30,
-    id: "freestyle",
+    id: "song_67453f0b-b8fd-4d5a-9e1f-70af6b9983e7",
     difficulty: 3,
-    title: "Freestyle"
+    title: "Freestyle",
+    tempo: "80"
   );
-
-
 
   @override
   Widget build(BuildContext context) {
-    return              Card(
+    return
+      Card(
       child: ExpandablePanel(
         header: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -62,7 +70,7 @@ class _FreestlyeCardState extends State<FreestlyeCard> {
                     onChanged: (double value) {
                       setState(() {
                         _tempoSliderValue = value;
-                        freestyleSong.backingTrack = value.toString();
+                        freestyleSong.tempo = value.toString();
 
                       });
                     },
@@ -105,6 +113,7 @@ class _FreestlyeCardState extends State<FreestlyeCard> {
                     onChanged: (double value) {
                       setState(() {
                         freestyleSong.parts = value.toString();
+                        freestyleSong.id = _partsToSongID[value];
                         _singersSliderValue = value;
                       });
                     },
@@ -115,7 +124,9 @@ class _FreestlyeCardState extends State<FreestlyeCard> {
                 child: Text(
                     "Create song"
                 ),
-                onPressed: (){Navigator.pop(context, freestyleSong);},
+                onPressed: (){
+                  Navigator.pop(context, freestyleSong);
+                  },
               )
             ],
           ),
@@ -124,3 +135,4 @@ class _FreestlyeCardState extends State<FreestlyeCard> {
     );
   }
 }
+

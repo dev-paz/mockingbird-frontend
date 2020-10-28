@@ -29,9 +29,16 @@ class _EditProjectWrapperState extends State<EditProjectWrapper> {
   String error = "";
 
   Future<void> _fetchSongParts() async {
+    String tempo = currentProject.song.tempo;
     SongParts instance = SongParts(songId: currentProject.song.id);
     await instance.getSongParts();
-    print(instance.songParts[0].id);
+    if (currentProject.song.title.contains("freestyle_")) {
+      for (var i = 0; i < instance.songParts.length; i++) {
+        instance.songParts[i].musicUrl =
+            "https://firebasestorage.googleapis.com/v0/b/mockingbird-287ec.appspot.com/o/Metronomes%2Ftamborine_" +
+                tempo + "bpm.mp4?alt=media";
+      }
+    }
     setState(() {
       songParts = instance.songParts;
     });

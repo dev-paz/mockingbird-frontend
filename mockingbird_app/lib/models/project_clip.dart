@@ -18,6 +18,7 @@ class ProjectClip {
   final String username;
   final String picture;
   final String partType;
+  final String length;
   String platform;
   Function updateProgressIndicator;
 
@@ -36,7 +37,8 @@ class ProjectClip {
         this.username,
         this.updateProgressIndicator,
         this.partType,
-        this.platform
+        this.platform,
+        this.length
       }
     );
 
@@ -53,7 +55,8 @@ class ProjectClip {
         username: json["username"],
         picture: json["profile_photo_url"],
         partType: json["part_type"],
-        platform: json["platform"]
+        platform: json["platform"],
+        length: json["length"]
     );
   }
 
@@ -68,7 +71,8 @@ class ProjectClip {
       "openshot_id": openshotProjectId,
       "openshot_url": openshotProjectURL,
       "status": status,
-      "platform": platform
+      "platform": platform,
+      "length":length
     };
     return userJson;
   }

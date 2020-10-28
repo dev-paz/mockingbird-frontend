@@ -22,6 +22,12 @@ class _SongsListState extends State<SongsList> {
     });
     Songs instance = Songs();
     songs = await instance.getSongs();
+    for (var i = 0; i < songs.length; i++){
+      print(songs[i].title);
+      if (songs[i].title.contains("freestyle")){
+        songs.removeAt(i);
+      }
+    }
     setState(() {
       loading = false;
     });
